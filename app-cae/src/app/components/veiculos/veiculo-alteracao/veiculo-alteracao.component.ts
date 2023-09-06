@@ -8,19 +8,17 @@ import { VeiculoService } from 'src/app/services/veiculo.service';
   templateUrl: './veiculo-alteracao.component.html',
   styleUrls: ['./veiculo-alteracao.component.css']
 })
-
-export class VeiculoAlteracaoComponent implements OnInit {
-
+export class VeiculoAlteracaoComponent implements OnInit{
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private service: VeiculoService) { }
 
-  veiculo: Veiculo = new Veiculo();
+  veiculo: Veiculo = new Veiculo;
   placa!: string;
 
   ngOnInit(): void {
-    this.placa = this.route.snapshot.paramMap.get('id') as string;
+     this.placa = this.route.snapshot.paramMap.get('id') as string;
     this.buscar(this.placa);
   }
 
@@ -29,22 +27,19 @@ export class VeiculoAlteracaoComponent implements OnInit {
       .subscribe(resposta => this.veiculo = resposta);
   }
 
-  fechar(): void {
+  fechar() {
     this.router.navigate(['/veiculos']);
   }
 
-  alterar(veiculo: Veiculo): void {
-    this.service.putVeiculoApi(veiculo, this.placa).subscribe({
-      complete: () => this.fechar(),
-      error: erro => {
-        console.error(erro);
-
-      }
-    });
-
-    setTimeout(() => {
-      this.fechar();
-    }, 1000);
-
+  alterar(veiculo: Veiculo) {
+    this.service.putVeiculoApi(veiculo, this.placa)
+      .subscribe({
+        complete: () => this.fechar(),
+        error: erro => {
+          console.error(erro);
+          window.alert(erro);
+        }
+      });
   }
+
 }

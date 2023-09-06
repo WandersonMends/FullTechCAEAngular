@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Vaga } from '../classes/vaga';
 import { Apartamento } from '../classes/apartamento';
-import { VagasVeiculoDto } from '../classes/vagas-veiculo-dto';
 
 @Injectable()
 export class VagaService {
@@ -20,12 +19,6 @@ export class VagaService {
   public getVagasApi() : Observable<Vaga[]> {
     return this.http.get<Vaga[]>(this.baseUrl);
   }
-
-  public getVagasVeiculoApi(idApartamento: number) : Observable<VagasVeiculoDto[]> {
-    const url = `${this.baseUrl}geral/${idApartamento}`;
-    return this.http.get<VagasVeiculoDto[]>(url);
-  }
-
 
   public getVagaApi(id: number) : Observable<Vaga> {
     const url = `${this.baseUrl}${id}`;

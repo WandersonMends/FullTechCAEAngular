@@ -32,13 +32,7 @@ export class VeiculoRemocaoComponent implements OnInit{
   }
 
   remover() : void {
-    this.service.deleteVeiculoApi(this.placa)
-    .subscribe( () => this.fechar());
-
-    setTimeout(() => {
-      this.fechar();
-    }, 1000);
-  
+    this.service.deleteVeiculoApi(this.placa).subscribe( () => this.fechar());
   }
 
 }
